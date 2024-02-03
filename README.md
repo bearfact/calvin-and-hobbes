@@ -4,17 +4,17 @@
 * Accepts the request  
 * Define authentication and authorization     
 * Formats and responds with appropriate http status codes
-* Can throw http status code based errors
+* Can throw http status code errors
 
 
 #### Actions
 * Business logic lives here.  
-* This layer should operate all of its calls to services and not directly interact with models.  This keeps the data access and creation logic to a single point within a service.  
+* This layer should operate all of its calls to services and never directly interact with models.  This keeps the data access and creation logic to a single point within a service.  
 
 
 #### Services
-* Makes use of models, other micro services, to persist and read data.  
-* Should not throw http errors, generally I dont' like it to throw any errors. If for example I look up a document and its not found I wouldn't throw an exception I would return null and let the action layer decide if thats an acceptable use case or let the controller throw a 404 if it needs to.
+* Makes use of models, and other services, to persist and read data.  
+* Should not throw http errors
 
 #### Models
 * They're models you know the deal.
@@ -24,7 +24,7 @@
 #### Jobs & Workers
 * Jobs are single modules
 * They contain logic to validate their data.
-* They have an enqueue method to leverage the validation and put the job on the queueu.
+* They have an enqueue method to leverage the validation and put the job on the queue.
 * They have a work method that performs the actual task.
   
 
@@ -32,7 +32,7 @@
 
 * No babel - no build needed - fast dev loop
 * Bunyan - super great JSON formatted logging.
-* Boom - standard well formatted error messages.
+* Boom - standard well-formatted error messages.
 * Joi - Object schema validator for req params and job params.
 * dotenv - env variables in a single file.  Accessed through process.env within the application.
 * RabbitMQ - for messaging and to task workers with a job.
