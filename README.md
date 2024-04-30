@@ -13,7 +13,8 @@
 
 
 #### Services
-* Makes use of models, and other services, to persist and read data.  
+* Makes use of models, and other child services, to persist and read data.
+* Child services are those that should not be accessed directly, only through this parent, think has one relationships.
 * Should not throw http errors
 
 #### Models
